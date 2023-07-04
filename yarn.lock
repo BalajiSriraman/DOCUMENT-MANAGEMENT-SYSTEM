@@ -2832,6 +2832,11 @@ typescript@*:
   resolved "https://registry.npmjs.org/typescript/-/typescript-5.1.6.tgz"
   integrity sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==
 
+uikit@^3.16.22:
+  version "3.16.22"
+  resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.16.22.tgz#0302857d9542b0d35a1a92701980df4aaaa91a67"
+  integrity sha512-zzzqCDZdJV7oeHccfUaDAx7n96HlooiTirmxk3uI8N7CEn1Gj89CumgSx/dhgPsqPRlnFZ+6gIBA9ZpFhy5Qjg==
+
 undici@^5.22.0:
   version "5.22.1"
   resolved "https://registry.npmjs.org/undici/-/undici-5.22.1.tgz"
