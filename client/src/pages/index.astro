@@ -1,11 +1,11 @@
 ---
-import Upload from "../components/Upload.astro";
+import Upload from "../components/Upload";
 import Files from "../components/Files.astro";
 import Admin from "../components/Admin.astro";
 ---
 
 <>
-    <Upload />
+    <Upload client:load/>
     <Files />
     <Admin />
 </>
