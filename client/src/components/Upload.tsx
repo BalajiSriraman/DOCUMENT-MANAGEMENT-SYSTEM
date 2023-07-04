@@ -1,14 +1,16 @@
+import { useDropzone } from "react-dropzone";
+
 function Upload() {
 
-    function post(event: any) {
-        const file = event.target.files[0];
-        console.log(file);
-
-    }
+    const { getRootProps, getInputProps } = useDropzone({
+        onDrop: (acceptedFiles) => {
+            console.log(acceptedFiles);
+        }
+    });
 
     return (
         <div className="flex items-center justify-center w-full mt-20">
-            <div className="flex items-center justify-center w-4/5">
+            <div className="flex items-center justify-center w-4/5" {...getRootProps()}>
                 <label
                     htmlFor="dropzone-file"
                     className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
@@ -37,7 +39,7 @@ function Upload() {
                             SVG, PNG, JPG or GIF (MAX. 800x400px)
                         </p>
                     </div>
-                    <input onChange={post} id="dropzone-file" type="file" className="hidden" />
+                    <div id="dropzone-file" className="hidden" {...getInputProps()} />
                 </label>
             </div>
         </div>
