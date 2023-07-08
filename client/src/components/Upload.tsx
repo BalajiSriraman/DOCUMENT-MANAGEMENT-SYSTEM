@@ -34,7 +34,6 @@ const UploadFileForm: React.FC = () => {
       console.log("420 error occurred while uploading the file:", error);
     }
   };
-
   return (
     <div>
       <form onSubmit={handleSubmit}>
