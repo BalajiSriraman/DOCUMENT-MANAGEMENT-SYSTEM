@@ -3,8 +3,37 @@ import { useDropzone } from "react-dropzone";
 function Upload() {
 
     const { getRootProps, getInputProps } = useDropzone({
-        onDrop: (acceptedFiles) => {
-            console.log(acceptedFiles);
+        onDrop: async (acceptedFiles) => {
+
+            const data = {
+                name: "hello from client",
+                // file: acceptedFiles[0].name
+            }
+            try {
+                // console.log(data.file)
+                const response = await fetch("http://localhost:1403/files", {
+                    method: "POST",
+                    body: data,
+                });
+
+                if (response.ok) {
+                    console.log("Files uploaded successfully!");
+                    console.log(response)
+                    // Handle success
+                } else {
+                    console.error("Failed to upload files");
+                    console.log(response)
+
+                    // Handle error
+                }
+            } catch (error) {
+                console.error("Error occurred while uploading files", error);
+                // Handle error
+            }
+        }
+        ,
+        accept: {
+            'pdf/file': ['.pdf']
         }
     });
 

@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@fastify/cors": "^8.3.0",
     "abort-controller": "^3.0.0",
     "abstract-logging": "^2.0.1",
     "ajv": "^8.12.0",
@@ -27,6 +28,7 @@
     "fastify": "^4.19.2",
     "fastq": "^1.15.0",
     "find-my-way": "^7.6.2",
+    "formidable": "^3.5.0",
     "forwarded": "^0.2.0",
     "ieee754": "^1.2.1",
     "ipaddr.js": "^1.9.1",
@@ -68,5 +70,8 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/formidable": "^3.4.0"
+  }
 }
