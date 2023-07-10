@@ -18,7 +18,8 @@ fastify.get('/', async (request, reply) => {
 })
 
 // Endpoint to handle file uploads
-fastify.post('/upload', (request, reply) => {
+fastify.post('/files', (request, reply) => {
+    console.log('request')
     const form = formidable({ multiples: true });
   
     // Parse the incoming form data
@@ -31,28 +32,19 @@ fastify.post('/upload', (request, reply) => {
   
       // Move the uploaded file(s) to the desired folder
       const folder = fields.folder || 'default';
-      const uploadDir = path.join(__dirname, 'uploads', folder);
+      const uploadDir = path.join(__dirname, 'uploads', 'folder');
   
       fs.mkdirSync(uploadDir, { recursive: true });
   
       // Move each file to the upload directory
-      Object.values(files).forEach((file) => {
-        const oldPath = file.path;
-        const newPath = path.join(uploadDir, file.name);
+    //   Object.values(files).forEach((file) => {
+    //     const oldPath = file.path;
+    //     const newPath = path.join(uploadDir, file.name);
   
-        fs.renameSync(oldPath, newPath);
-      });
+    //     fs.renameSync(oldPath, newPath);
+    //   });
   
       reply.send({ message: 'File(s) uploaded successfully.' });
     });
   });
   
-  // Start the server
-  const port = process.env.PORT || 3000;
-  app.listen(port, (err) => {
-    if (err) {
-      console.error('Error starting the server:', err);
-      process.exit(1);
-    }
-    console.log(`Server running on port ${port}`);
-  });
