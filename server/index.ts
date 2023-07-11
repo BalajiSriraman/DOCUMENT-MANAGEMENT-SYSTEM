@@ -5,6 +5,7 @@ import fs from 'fs';
 
 const app = express();
 const port = 1403;
+const currentDirectory = process.cwd();
 
 // Multer configuration for file upload
 const upload = multer();
@@ -13,14 +14,15 @@ const upload = multer();
 app.use(cors());
 
 // Function to save the file
-function saveFile(folder: string, file: Express.Multer.File, res: Response) {
+// Function to save the file
+function saveFile(folder: string, file: Express.Multer.File, fileName:string , res: Response) {
   // Create the folder if it doesn't exist
-  if (!fs.existsSync(folder)) {
-    fs.mkdirSync(folder);
+  if (!fs.existsSync(`${currentDirectory}/assets/${folder}`)) {
+    fs.mkdirSync(`${currentDirectory}/assets/${folder}`, {recursive: true});
   }
 
   // Save the file inside the folder
-  fs.writeFile(`${folder}/${file.originalname}`, file.buffer, (err) => {
+  fs.writeFile(`${currentDirectory}/assets/${folder}/${fileName}`, file.buffer, (err) => {
     if (err) {
       console.error(err);
       return res.status(500).send('Error saving the file');
@@ -34,6 +36,8 @@ function saveFile(folder: string, file: Express.Multer.File, res: Response) {
 app.post('/files', upload.single('file'), (req: Request, res: Response) => {
   const file = req.file;
   const folder = req.body.folderName;
+  const fileName = req.body.fileName;
+  const orginalFileName = req.body.orgfileName;
 
   if (!file) {
     console.log('No file selected');
@@ -42,8 +46,10 @@ app.post('/files', upload.single('file'), (req: Request, res: Response) => {
 
   console.log('File exists');
   console.log('Folder:', folder);
+  console.log('File name:', fileName);
 
-  saveFile(folder, file, res);
+
+  saveFile(folder, file, fileName ,res  );
 });
 
 // Start the server
